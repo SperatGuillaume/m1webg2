@@ -17,8 +17,9 @@ class CategoryFixtures extends Fixture
             // créer une référence pour mettre en relation les entités : mise en mémoire de l'instance
 
 
-            $randomArtwork = random_int(0, 4);
-            $category->addArtwork( $this->getReference("artwork$randomArtwork") );
+            $this->addReference("category$i", $category);
+
+
 
             $manager->persist($category);
         }

@@ -1,0 +1,12 @@
+{# notice est la clé du message flash créé dans le contrôleur #}
+{% for notice in app.flashes('notice') %}
+    <p class="alert alert-success">
+        {{ notice }}
+    </p>
+{% endfor %}
+
+{% for notice in app.flashes('error') %}
+    <p class="alert alert-danger">
+        {{ notice }}
+    </p>
+{% endfor %}

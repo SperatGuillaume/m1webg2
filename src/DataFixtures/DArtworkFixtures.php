@@ -7,7 +7,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Artwork;
 use Faker\Factory as Faker;
 
-class ArtworkFixtures extends Fixture
+class DArtworkFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
@@ -15,7 +15,7 @@ class ArtworkFixtures extends Fixture
         $faker = Faker::create('fr_FR');
 
         // pour remplir la table, créer des objets puis les persister
-        for($i = 0; $i < 5; $i++){
+        for($i = 0; $i < 20; $i++){
             $artwork = new Artwork();
             $artwork
                 ->setDescription($faker->text)
@@ -24,7 +24,8 @@ class ArtworkFixtures extends Fixture
             ;
 
             // récupération d'une référence créée dans CategoryFixtures
-            $this->addReference("artwork$i", $artwork);
+            $randomArtwork = random_int(0, 4);
+            $artwork->addCategory( $this->getReference("category$randomArtwork") );
 
             // persist : créer un enregistrement
             $manager->persist($artwork);

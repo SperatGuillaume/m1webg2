@@ -1,0 +1,57 @@
+{% extends 'admin.base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col">
+            <h1>Gestion des oeuvres</h1>
+
+            {% include 'inc/flash.message.html.twig' %}
+
+            <p class="text-right">
+                <a href="{{ url('admin.artwork.form') }}" class="btn btn-primary">Ajouter</a>
+            </p>
+            <table class="table table-striped">
+                <tr>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Catégories</th>
+                    <th></th>
+                </tr>
+                {% for result in results %}
+                    <tr>
+                        <td>{{ result.name }}</td>
+                        <td>{{ result.description    }}</td>
+                        <td>
+                            <img src="{{ result.image }}" class="w-25" alt="">
+                        </td>
+                        <td>
+                            {# afficher les catégories #}
+                            <ul>
+                                {% for category in result.categories %}
+                                    <li>{{ category.name | capitalize }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td>
+                            <a href="{{ url('admin.artwork.form.update', { id: result.id } ) }}"
+                               class="btn btn-warning">Modifier</a>
+                            <a href="{{ url('admin.artwork.remove', { id: result.id }) }}"
+                               class="btn btn-danger">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+

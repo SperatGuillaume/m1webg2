@@ -24,13 +24,15 @@ class Category
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Artwork", inversedBy="categories")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Artwork", mappedBy="categories")
      */
-    private $artwork;
+    private $artworks;
+    
 
     public function __construct()
     {
         $this->artwork = new ArrayCollection();
+        $this->artworks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -53,15 +55,16 @@ class Category
     /**
      * @return Collection|Artwork[]
      */
-    public function getArtwork(): Collection
+    public function getArtworks(): Collection
     {
-        return $this->artwork;
+        return $this->artworks;
     }
 
     public function addArtwork(Artwork $artwork): self
     {
-        if (!$this->artwork->contains($artwork)) {
-            $this->artwork[] = $artwork;
+        if (!$this->artworks->contains($artwork)) {
+            $this->artworks[] = $artwork;
+            $artwork->addCategory($this);
         }
 
         return $this;
@@ -69,10 +72,13 @@ class Category
 
     public function removeArtwork(Artwork $artwork): self
     {
-        if ($this->artwork->contains($artwork)) {
-            $this->artwork->removeElement($artwork);
+        if ($this->artworks->contains($artwork)) {
+            $this->artworks->removeElement($artwork);
+            $artwork->removeCategory($this);
         }
 
         return $this;
     }
+
+
 }

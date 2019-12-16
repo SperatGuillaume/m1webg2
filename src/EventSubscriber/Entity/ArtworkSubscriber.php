@@ -9,6 +9,7 @@ use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
 use Symfony\Component\Console\Event\ConsoleErrorEvent;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ArtworkSubscriber implements EventSubscriber
 {
@@ -36,8 +37,12 @@ class ArtworkSubscriber implements EventSubscriber
             $slug = $this->stringService->getSlug($name);
             $entity->setSlug($slug);
 
+            dd($entity);
+
+
             // transfert d'image
             if($entity->getImage() instanceof UploadedFile){
+
                 $this->fileService->upload($entity->getImage(), 'img/artwork');
 
                 // mise à jour de la propriété image
@@ -45,11 +50,43 @@ class ArtworkSubscriber implements EventSubscriber
             }
         }
     }
+    public function postLoad(LifecycleEventArgs $args):void
+    {
+        $entity = $args->getObject();
+
+        if (!$entity instanceof Artwork) {
+            return;
+        }else {
+            $entity->prevImage = $entity->getImage();
+        }
+    }
+
+    public function preUpdate(LifecycleEventArgs $args):void
+    {
+        $entity = $args->getObject();
+        if (!$entity instanceof Artwork) {
+            return;
+        }else {
+
+            if($entity->getImage() instanceof UploadedFile){
+                $this->fileService->upload($entity->getImage(), 'img/artwork');
+                $entity->setImage($this->fileService->getFileName());
+
+                if(file_exists("img/artwork/{$entity->prevImage}")){
+                    $this->fileService->remove('img/artwork', $entity->prevImage);
+                }
+            }else{
+                $entity->setImage($entity->prevImage);
+            }
+        }
+    }
 
     public function getSubscribedEvents(): array
     {
         return [
-            Events::prePersist
+            Events::prePersist,
+            Events::postLoad,
+            Events::preUpdate
         ];
     }
 

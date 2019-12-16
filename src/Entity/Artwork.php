@@ -39,9 +39,10 @@ class Artwork
     private $slug;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Category", mappedBy="artwork")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="artworks")
      */
     private $categories;
+
 
     public function __construct()
     {
@@ -113,7 +114,6 @@ class Artwork
     {
         if (!$this->categories->contains($category)) {
             $this->categories[] = $category;
-            $category->addArtwork($this);
         }
 
         return $this;
@@ -123,9 +123,10 @@ class Artwork
     {
         if ($this->categories->contains($category)) {
             $this->categories->removeElement($category);
-            $category->removeArtwork($this);
         }
 
         return $this;
     }
+
+
 }
