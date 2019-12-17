@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-sm-6 offset-sm-3">
+            <h2>{{ expo.name }}</h2>
+            <span>{{ expo.expoDate | date('Y-m-d H:i') }}</span>
+            <p>{{ expo.description }}</p>
+            <p>
+                <a href="{{ path("site.expo.index") }}" class="btn btn-primary">Toutes les expositions</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}

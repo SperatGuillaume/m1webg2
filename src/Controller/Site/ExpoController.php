@@ -39,9 +39,9 @@ class ExpoController extends AbstractController{
         );
         */
         $expos = $expoRepository->getExpoStillAvailableWithLimit($nb_expos,($page-1) * $nb_expos);
-        dd($expos->getResult());
 
-        return $this->render('public/artwork/index.html.twig', [
+
+        return $this->render('public/expo/index.html.twig', [
             'expos' => $expos->getResult(),
             'current_page' => $page,
             'nb_page' =>ceil($nb_page)

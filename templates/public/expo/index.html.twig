@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row mb-4">
+        <div class="col">
+            <h1>Expositions</h1>
+        </div>
+    </div>
+    <div class="row">
+        {% for expo in expos %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <h2>{{ expo.name }}</h2>
+                <span>{{ expo.expo_date | date('Y-m-d H:i') }}</span>
+                <p>{{ expo.description }}</p>
+                <p>
+                    <a href="{{ path("site.expo.show", { 'slug': expo.slug }) }}" class="btn btn-primary">Consulter</a>
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="mb-4 col-sm-12 text-center" >
+        {% if current_page != 1 %}
+            <a href="{{ path("site.expo.page", { 'page': current_page - 1 }) }}" class="btn btn-primary">Précédent</a>
+
+        {% endif %}
+        {% for i in 1..nb_page %}
+            {% if current_page == i %}
+                <a href="{{ path("site.expo.page", { 'page': i }) }}" class="btn btn-primary">{{ i }}</a>
+            {% else %}
+                <a href="{{ path("site.expo.page", { 'page': i }) }}" class="btn btn-light">{{ i }}</a>
+            {% endif %}
+        {% endfor %}
+        {% if current_page != nb_page %}
+            <a href="{{ path("site.expo.page", { 'page': current_page + 1 }) }}" class="btn btn-primary">Suivant</a>
+        {% endif %}
+    </div>
+{% endblock %}
