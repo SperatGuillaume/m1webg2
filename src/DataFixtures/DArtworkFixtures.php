@@ -24,8 +24,9 @@ class DArtworkFixtures extends Fixture
             ;
 
             // récupération d'une référence créée dans CategoryFixtures
-            $randomArtwork = random_int(0, 4);
-            $artwork->addCategory( $this->getReference("category$randomArtwork") );
+            $randomArtwork = random_int(0, 2);
+            $categories = ['peinture','dessin','sculpture'];
+            $artwork->addCategory( $this->getReference($categories[$randomArtwork]) );
 
             // persist : créer un enregistrement
             $manager->persist($artwork);

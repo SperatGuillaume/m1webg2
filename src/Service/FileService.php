@@ -23,7 +23,6 @@ class FileService
     {
         // récupérer un nom aléatoire pour le fichier
         $this->fileName = "{$this->stringService->getToken()}.{$file->guessClientExtension()}";
-        dd($directory);
         //dump($fileName);
 
         // transfert

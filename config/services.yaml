@@ -29,3 +29,5 @@ services:
             tags: [ 'doctrine.event_subscriber' ]
     App\EventSubscriber\Entity\ExpoSubscriber:
                 tags: [ 'doctrine.event_subscriber' ]
+    App\EventSubscriber\Entity\CategorySubscriber:
+                    tags: [ 'doctrine.event_subscriber' ]

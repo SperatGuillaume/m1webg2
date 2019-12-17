@@ -75,7 +75,7 @@ class ArtworkController extends AbstractController{
     /**
      * @Route("/remove/{id}", name="admin.artwork.remove")
      */
-    public function remove(ArtworkRepository $artworkRepository, EntityManager $entityManager, int $id, FileService $fileService):Response
+    public function remove(ArtworkRepository $artworkRepository, EntityManagerInterface $entityManager, int $id, FileService $fileService):Response
     {
         // autoriser la route uniquement aux super admin
         /*if(!$this->isGranted('ROLE_SUPER_ADMIN')){

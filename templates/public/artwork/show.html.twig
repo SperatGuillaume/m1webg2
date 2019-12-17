@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-sm-6 offset-sm-3">
+            <h2>{{ artwork.name }}</h2>
+            <img src="{{ artwork.image }}">
+            <img src="{{ asset('img/artwork/' ~ artwork.image) }}">
+            <p>{{ artwork.description }}</p>
+            <p>
+                <a href="{{ path("site.artwork.index") }}" class="btn btn-primary">Toutes les oeuvres</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}

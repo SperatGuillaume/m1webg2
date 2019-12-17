@@ -10,16 +10,14 @@ class CategoryFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        for($i = 0; $i < 5; $i++){
+        $categories_label = ['peinture','dessin','sculpture'];
+        // $product = new Product();
+        // $manager->persist($product);
+
+        foreach ($categories_label as $category_label){
             $category = new Category();
-            $category->setName("catégorie$i");
-
-            // créer une référence pour mettre en relation les entités : mise en mémoire de l'instance
-
-
-            $this->addReference("category$i", $category);
-
-
+            $category->setName($category_label);
+            $this->addReference($category_label,$category);
 
             $manager->persist($category);
         }

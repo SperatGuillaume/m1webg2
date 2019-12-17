@@ -37,7 +37,6 @@ class ArtworkSubscriber implements EventSubscriber
             $slug = $this->stringService->getSlug($name);
             $entity->setSlug($slug);
 
-            dd($entity);
 
 
             // transfert d'image

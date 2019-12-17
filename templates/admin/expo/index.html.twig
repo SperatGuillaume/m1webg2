@@ -3,25 +3,29 @@
 {% block body %}
     <div class="row">
         <div class="col">
-            <h1>Gestion des catégories</h1>
+            <h1>Gestion des oeuvres</h1>
 
             {% include 'inc/flash.message.html.twig' %}
 
             <p class="text-right">
-                <a href="{{ url('admin.category.form') }}" class="btn btn-primary">Ajouter</a>
+                <a href="{{ url('admin.expo.form') }}" class="btn btn-primary">Ajouter</a>
             </p>
             <table class="table table-striped">
                 <tr>
                     <th>Nom</th>
+                    <th>Description</th>
+                    <th>Date</th>
                     <th></th>
                 </tr>
                 {% for result in results %}
                     <tr>
                         <td>{{ result.name }}</td>
+                        <td>{{ result.description }}</td>
+                        <td>{{ result.expoDate | date('Y-m-d H:i') }}</td>
                         <td>
-                            <a href="{{ url('admin.category.form.update', { id: result.id } ) }}"
+                            <a href="{{ url('admin.expo.form.update', { id: result.id } ) }}"
                                class="btn btn-warning">Modifier</a>
-                            <a href="{{ url('admin.category.remove', { id: result.id }) }}"
+                            <a href="{{ url('admin.expo.remove', { id: result.id }) }}"
                                class="btn btn-danger">Supprimer</a>
                         </td>
                     </tr>

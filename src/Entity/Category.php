@@ -27,6 +27,11 @@ class Category
      * @ORM\ManyToMany(targetEntity="App\Entity\Artwork", mappedBy="categories")
      */
     private $artworks;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
     
 
     public function __construct()
@@ -76,6 +81,18 @@ class Category
             $this->artworks->removeElement($artwork);
             $artwork->removeCategory($this);
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

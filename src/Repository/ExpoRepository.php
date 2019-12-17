@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Expo;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query;
 
 /**
  * @method Expo|null find($id, $lockMode = null, $lockVersion = null)
@@ -18,6 +19,33 @@ class ExpoRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Expo::class);
     }
+
+
+
+    public function getExpoStillAvailable():Query
+    {
+        $query = $this->createQueryBuilder('expo')
+            ->select('expo.id, expo.name, expo.description, expo.expo_date, expo.slug')
+            ->where('expo.expo_date > :today')
+            ->setParameter('today', new \DateTime())
+            ->getQuery()
+        ;
+        return $query;
+    }
+
+    public function getExpoStillAvailableWithLimit(int $nb_artworks, int $page):Query
+    {
+        $query = $this->createQueryBuilder('expo')
+            ->select('expo.id, expo.name, expo.description, expo.expo_date, expo.slug')
+            ->where('expo.expo_date > :today')
+            ->setParameter('today', new \DateTime())
+            ->setMaxResults($nb_artworks)
+            ->setFirstResult($page)
+            ->getQuery()
+        ;
+        return $query;
+    }
+
 
     // /**
     //  * @return Expo[] Returns an array of Expo objects

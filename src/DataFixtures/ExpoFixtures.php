@@ -15,11 +15,11 @@ class ExpoFixtures extends Fixture
         $faker = Faker::create('fr_FR');
 
         // pour remplir la table, créer des objets puis les persister
-        for($i = 0; $i < 5; $i++){
+        for($i = 0; $i < 20; $i++){
             $expo = new Expo();
             $expo
                 ->setDescription($faker->text)
-                ->setExpoDate($faker->dateTimeThisYear)
+                ->setExpoDate($faker->dateTimeThisMonth)
                 ->setName($faker->unique()->sentence(5))
             ;
 
