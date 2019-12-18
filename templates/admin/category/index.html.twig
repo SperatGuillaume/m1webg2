@@ -1,34 +1,56 @@
 {% extends 'admin.base.html.twig' %}
 
 {% block body %}
-    <div class="row">
-        <div class="col">
-            <h1>Gestion des catégories</h1>
 
-            {% include 'inc/flash.message.html.twig' %}
-
+    <div class="container-fluid">
+        {% include 'inc/flash.message.html.twig' %}
+        <!-- Page Heading -->
+        <div class="col d-inline-flex justify-content-between">
+            <h1 class="h3 mb-2 text-gray-800">Catégories</h1>
             <p class="text-right">
                 <a href="{{ url('admin.category.form') }}" class="btn btn-primary">Ajouter</a>
             </p>
-            <table class="table table-striped">
-                <tr>
-                    <th>Nom</th>
-                    <th></th>
-                </tr>
-                {% for result in results %}
-                    <tr>
-                        <td>{{ result.name }}</td>
-                        <td>
-                            <a href="{{ url('admin.category.form.update', { id: result.id } ) }}"
-                               class="btn btn-warning">Modifier</a>
-                            <a href="{{ url('admin.category.remove', { id: result.id }) }}"
-                               class="btn btn-danger">Supprimer</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </table>
+        </div>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Liste des catégories</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>..</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Nom</th>
+                            <th>..</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        {% for result in results %}
+                            <tr>
+                                <td>{{ result.name }}</td>
+                                <td>
+                                    <a href="{{ url('admin.category.form.update', { id: result.id } ) }}"
+                                       class="btn btn-warning btn-circle mb-2"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ url('admin.category.remove', { id: result.id }) }}"
+                                       class="btn btn-danger btn-circle"><i class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
+
 {% endblock %}
 
 
