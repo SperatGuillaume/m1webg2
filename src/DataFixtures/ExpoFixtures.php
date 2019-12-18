@@ -29,6 +29,21 @@ class ExpoFixtures extends Fixture
             $manager->persist($expo);
         }
 
+
+        for($i = 0; $i < 20; $i++){
+            $expo = new Expo();
+            $expo
+                ->setDescription($faker->text)
+                ->setExpoDate(\DateTime::createFromFormat("Y-m-d H:i:s", '2020-02-03 07:14:10'))
+                ->setName($faker->unique()->sentence(5))
+            ;
+
+
+
+            // persist : créer un enregistrement
+            $manager->persist($expo);
+        }
+
         // flush : exécuter les requêtes sql
         $manager->flush();
     }
