@@ -87,7 +87,7 @@ class UserAuthenticator extends AbstractFormLoginAuthenticator
         }
 
         // la route affichée après une connexion réussie
-        return new RedirectResponse($this->urlGenerator->generate('homepage.index'));
+        return new RedirectResponse($this->urlGenerator->generate('dashboard.index'));
 
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
