@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <div class="col">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        {% if app.user %}
+            <div class="mb-3">
+                Connecté en tant que {{ app.user.username }},
+                {# déconnexion à partir du nom de la route #}
+                {#<a href="{{ path('security.logout') }}">Logout</a>#}
+
+                {# déconnexion à partir de l'identifiant de la zone sécurisée contenue dans security.yaml #}
+                <a href="{{ logout_url('main') }}">Déconnexion</a>
+            </div>
+        {% endif %}
+
+        <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
+
+        {{ form_start(form, { attr : { novalidate: 'novalidate' } }) }}
+        <p>
+            {{ form_label(form.email, 'Email: ') }}
+            {{ form_widget(form.email, { attr: { value: last_username, autofocus: 'autofocus' } }) }}
+        </p>
+        <p>
+            {{ form_label(form.password, 'Mot de passe: ') }}
+            {{ form_widget(form.password) }}
+        </p>
+        <p>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <input type="submit" value="Valider" class="btn btn-primary">
+        </p>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
