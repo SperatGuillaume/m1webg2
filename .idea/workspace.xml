@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5cafd93f-7f4f-44d6-a24d-a11d03b67315" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Security/UserAuthenticator.php" afterPath="$PROJECT_DIR$/src/Security/UserAuthenticator.php" />
-    </list>
+    <list default="true" id="5cafd93f-7f4f-44d6-a24d-a11d03b67315" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,8 +34,8 @@
       <file leaf-file-name="UserAuthenticator.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Security/UserAuthenticator.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="89" column="76" lean-forward="false" selection-start-line="89" selection-start-column="76" selection-end-line="89" selection-end-column="76" />
+            <state relative-caret-position="66">
+              <caret line="67" column="96" lean-forward="false" selection-start-line="67" selection-start-column="96" selection-end-line="67" selection-end-column="96" />
               <folding />
             </state>
           </provider>
@@ -349,12 +346,12 @@
       <workItem from="1576401963270" duration="17115000" />
       <workItem from="1576517446973" duration="14687000" />
       <workItem from="1576606113388" duration="27379000" />
-      <workItem from="1576700659541" duration="121000" />
+      <workItem from="1576700659541" duration="433000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59302000" />
+    <option name="totallyTimeSpent" value="59614000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -747,8 +744,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Security/UserAuthenticator.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="89" column="76" lean-forward="false" selection-start-line="89" selection-start-column="76" selection-end-line="89" selection-end-column="76" />
+        <state relative-caret-position="66">
+          <caret line="67" column="96" lean-forward="false" selection-start-line="67" selection-start-column="96" selection-end-line="67" selection-end-column="96" />
           <folding />
         </state>
       </provider>
