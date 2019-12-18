@@ -1,51 +1,58 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="row mb-4">
-        <div class="col">
-            <h1>Oeuvres</h1>
-        </div>
-    </div>
-    <div class="row mb-4">
-        <div class="col-sm-3">
-            <h2>Filtres</h2>
-        </div>
-        <div class="col-sm-9">
-            <ul>
-                <li><a href="{{ path("site.artwork.index") }}">Tous</a></li>
-                <li><a href="{{ path("site.artwork.category.index", { 'category': 'peinture' }) }}">Peinture</a></li>
-                <li><a href="{{ path("site.artwork.category.index", { 'category': 'dessin' }) }}">Dessin</a></li>
-                <li><a href="{{ path("site.artwork.category.index", { 'category': 'sculpture' }) }}">Sculpture</a></li>
+
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="col d-inline-flex justify-content-between mb-2">
+            <h1 class="h3 mb-2 text-gray-800">Oeuvres</h1>
+            <ul class="list-group d-inline-flex flex-row">
+                <li class="list-group-item mr-1"><a href="{{ path("site.artwork.index") }}">Tous</a></li>
+                <li class="list-group-item mr-1"><a href="{{ path("site.artwork.category.index", { 'category': 'peinture' }) }}">Peinture</a></li>
+                <li class="list-group-item mr-1"><a href="{{ path("site.artwork.category.index", { 'category': 'dessin' }) }}">Dessin</a></li>
+                <li class="list-group-item"><a href="{{ path("site.artwork.category.index", { 'category': 'sculpture' }) }}">Sculpture</a></li>
             </ul>
         </div>
-    </div>
-    <div class="row">
-        {% for artwork in artworks %}
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <h2>{{ artwork.name }}</h2>
-                <img src="{{ artwork.image }}">
-                <img src="{{ asset('img/artwork/' ~ artwork.image) }}">
-                <p>{{ artwork.description }}</p>
-                <p>
-                    <a href="{{ path("site.artwork.show", { 'slug': artwork.slug }) }}" class="btn btn-primary">Consulter</a>
-                </p>
-            </div>
-        {% endfor %}
-    </div>
-    <div class="mb-4 col-sm-12 text-center" >
-        {% if current_page != 1 %}
-            <a href="{{ path("site.artwork.category.page", { 'page': current_page - 1, 'category': category }) }}" class="btn btn-primary">Précédent</a>
 
-        {% endif %}
-        {% for i in 1..nb_page %}
-            {% if current_page == i %}
-                <a href="{{ path("site.artwork.category.page", { 'page': i, 'category': category }) }}" class="btn btn-primary">{{ i }}</a>
-            {% else %}
-                <a href="{{ path("site.artwork.category.page", { 'page': i, 'category': category }) }}" class="btn btn-light">{{ i }}</a>
+        <!-- DataTales Example -->
+        <div class="row">
+
+            {% for artwork in artworks %}
+                <div class="col-sm-4">
+                    <div class="card shadow mb-4">
+
+                        <div class="card-body">
+                            <h2>{{ artwork.name }}</h2>
+                            <img src="{{ artwork.image }}">
+                            <img src="{{ asset('img/artwork/' ~ artwork.image) }}">
+                            <p>{{ artwork.description }}</p>
+                            <p>
+                                <a href="{{ path("site.artwork.show", { 'slug': artwork.slug }) }}" class="btn btn-primary">Consulter</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+
+        <div class="mb-4 col-sm-12 text-center" >
+            {% if current_page != 1 %}
+                <a href="{{ path("site.artwork.category.page", { 'page': current_page - 1, 'category': category }) }}" class="btn btn-primary">Précédent</a>
+
             {% endif %}
-        {% endfor %}
-        {% if current_page != nb_page %}
-            <a href="{{ path("site.artwork.category.page", { 'page': current_page + 1, 'category': category }) }}" class="btn btn-primary">Suivant</a>
-        {% endif %}
+            {% for i in 1..nb_page %}
+                {% if current_page == i %}
+                    <a href="{{ path("site.artwork.category.page", { 'page': i, 'category': category }) }}" class="btn btn-primary">{{ i }}</a>
+                {% else %}
+                    <a href="{{ path("site.artwork.category.page", { 'page': i, 'category': category }) }}" class="btn btn-light">{{ i }}</a>
+                {% endif %}
+            {% endfor %}
+            {% if current_page != nb_page %}
+                <a href="{{ path("site.artwork.category.page", { 'page': current_page + 1, 'category': category }) }}" class="btn btn-primary">Suivant</a>
+            {% endif %}
+        </div>
+
     </div>
+
 {% endblock %}

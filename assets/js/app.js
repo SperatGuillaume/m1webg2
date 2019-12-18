@@ -12,12 +12,13 @@ require('../admin-theme/vendor/fontawesome-free/css/all.min.css');
 require('../admin-theme/css/sb-admin-2.min.css');
 
 
-import 'bootstrap';
+
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 const $ = require('jquery');
 
 global.$ = global.jQuery = $;
 
+import 'bootstrap';
 
 require('../admin-theme/vendor/jquery/jquery.min.js');
 require('../admin-theme/vendor/bootstrap/js/bootstrap.bundle.min.js');

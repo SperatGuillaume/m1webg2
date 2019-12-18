@@ -1,37 +1,46 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="row mb-4">
-        <div class="col">
-            <h1>Expositions</h1>
+
+
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="col d-inline-flex justify-content-between">
+            <h1 class="h3 mb-2 text-gray-800">Expositions</h1>
         </div>
-    </div>
-    <div class="row">
+
+        <!-- DataTales Example -->
         {% for expo in expos %}
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <h2>{{ expo.name }}</h2>
-                <span>{{ expo.expo_date | date('Y-m-d H:i') }}</span>
-                <p>{{ expo.description }}</p>
-                <p>
-                    <a href="{{ path("site.expo.show", { 'slug': expo.slug }) }}" class="btn btn-primary">Consulter</a>
-                </p>
+            <div class="card shadow mb-4">
+
+                <div class="card-body">
+                    <h2>{{ expo.name }}</h2>
+                    <span>{{ expo.expo_date | date('Y-m-d H:i') }}</span>
+                    <p>{{ expo.description }}</p>
+                    <p>
+                        <a href="{{ path("site.expo.show", { 'slug': expo.slug }) }}"
+                           class="btn btn-primary">Consulter</a>
+                    </p>
+                </div>
             </div>
         {% endfor %}
-    </div>
-    <div class="mb-4 col-sm-12 text-center" >
-        {% if current_page != 1 %}
-            <a href="{{ path("site.expo.page", { 'page': current_page - 1 }) }}" class="btn btn-primary">Précédent</a>
 
-        {% endif %}
-        {% for i in 1..nb_page %}
-            {% if current_page == i %}
-                <a href="{{ path("site.expo.page", { 'page': i }) }}" class="btn btn-primary">{{ i }}</a>
-            {% else %}
-                <a href="{{ path("site.expo.page", { 'page': i }) }}" class="btn btn-light">{{ i }}</a>
+        <div class="mb-4 col-sm-12 text-center">
+            {% if current_page != 1 %}
+                <a href="{{ path("site.expo.page", { 'page': current_page - 1 }) }}" class="btn btn-primary">Précédent</a>
+
             {% endif %}
-        {% endfor %}
-        {% if current_page != nb_page %}
-            <a href="{{ path("site.expo.page", { 'page': current_page + 1 }) }}" class="btn btn-primary">Suivant</a>
-        {% endif %}
+            {% for i in 1..nb_page %}
+                {% if current_page == i %}
+                    <a href="{{ path("site.expo.page", { 'page': i }) }}" class="btn btn-primary">{{ i }}</a>
+                {% else %}
+                    <a href="{{ path("site.expo.page", { 'page': i }) }}" class="btn btn-light">{{ i }}</a>
+                {% endif %}
+            {% endfor %}
+            {% if current_page != nb_page %}
+                <a href="{{ path("site.expo.page", { 'page': current_page + 1 }) }}" class="btn btn-primary">Suivant</a>
+            {% endif %}
+        </div>
+
     </div>
 {% endblock %}

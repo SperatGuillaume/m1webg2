@@ -2,13 +2,70 @@
 
 
 {% block title %}
-Accueil
+    Accueil
 {% endblock %}
 
 
 {% block body %}
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Tito Salagado</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">Tito Salagado</h1>
 
-</div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-4">
+            <div class="col-sm-8">
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        {% for key, artwork in artworks %}
+                        {% if key == 0 %}
+                        <div class="carousel-item active">
+                            {% else %}
+                            <div class="carousel-item">
+                                {% endif %}
+                                <a href="{{ path("site.artwork.show", { 'slug': artwork.slug }) }}">
+                                    <img class="d-block w-100" src="{{ artwork.image }}" alt="">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>{{ artwork.name }}</h5>
+                                        <p>{{ artwork.description }}</p>
+                                    </div>
+                                </a>
+
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Description</h6>
+                </div>
+                <div class="card-body">
+                    <p>
+
+
+                        Vide, quantum, inquam, fallare, Torquate. oratio me istius philosophi non offendit; nam et complectitur verbis, quod vult, et dicit plane, quod intellegam; et tamen ego a philosopho, si afferat eloquentiam, non asperner, si non habeat, non admodum flagitem. re mihi non aeque satisfacit, et quidem locis pluribus. sed quot homines, tot sententiae; falli igitur possumus.
+
+                        Advenit post multos Scudilo Scutariorum tribunus velamento subagrestis ingenii persuasionis opifex callidus. qui eum adulabili sermone seriis admixto solus omnium proficisci pellexit vultu adsimulato saepius replicando quod flagrantibus votis eum videre frater cuperet patruelis, siquid per inprudentiam gestum est remissurus ut mitis et clemens, participemque eum suae maiestatis adscisceret, futurum laborum quoque socium, quos Arctoae provinciae diu fessae poscebant.
+
+                        Quare hoc quidem praeceptum, cuiuscumque est, ad tollendam amicitiam valet; illud potius praecipiendum fuit, ut eam diligentiam adhiberemus in amicitiis comparandis, ut ne quando amare inciperemus eum, quem aliquando odisse possemus. Quin etiam si minus felices in diligendo fuissemus, ferendum id Scipio potius quam inimicitiarum tempus cogitandum putabat.
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}
+
+    {% block javascripts %}
+
+    {% endblock %}

@@ -2,14 +2,24 @@
 
 {% block body %}
 
-    <div class="row">
-        <div class="col-sm-6 offset-sm-3">
-            <h2>{{ expo.name }}</h2>
-            <span>{{ expo.expoDate | date('Y-m-d H:i') }}</span>
-            <p>{{ expo.description }}</p>
-            <p>
-                <a href="{{ path("site.expo.index") }}" class="btn btn-primary">Toutes les expositions</a>
-            </p>
+
+
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="col d-inline-flex justify-content-between">
+            <h1 class="h3 mb-2 text-gray-800">{{ expo.name }}</h1>
+        </div>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+
+            <div class="card-body">
+                <span>{{ expo.expoDate | date('Y-m-d H:i') }}</span>
+                <p>{{ expo.description }}</p>
+                <p>
+                    <a href="{{ path("site.expo.index") }}" class="btn btn-primary">Toutes les expositions</a>
+                </p>
+            </div>
         </div>
     </div>
 {% endblock %}
